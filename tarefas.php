@@ -1,6 +1,7 @@
 <?php 
 session_start();
-
+include "banco.php";
+ 
      if(isset($_Get['nome']) && $_GET['nome'] != ''){
           $tarefa = array();
           
@@ -14,7 +15,7 @@ session_start();
           
           
           if(isset($_GET['prazo'])){
-               $tarefa['prazo'] = $_GET['prazo'];
+                              $tarefa['prazo'] = $_GET['prazo'];
           } else{
                $tarefa['prazo'] = '';
           }
@@ -36,11 +37,6 @@ session_start();
         if (isset($_GET['nome'])){
             $_SESSION['lista_tarefas'][] = $_GET['nome'];
         }
-         if(isset($_SESSION['lista_tarefas'])) {
-              $lista_tarefas = $_SESSION['lista_tarefas'];
-         }
-else{
-     $lista_tarefas = array();
-}
+$lista_tarefas = buscar_tarefas($conexao);       
 include "template.php";        
   
